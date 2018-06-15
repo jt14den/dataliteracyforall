@@ -1,19 +1,17 @@
 ---
-title: "Data Literacy for All"
+title: "Data Literacy for All, with R"
 author: "Ryan Womack"
-date: "May 23, 2017"
-output: html_document
+date: "May 29, 2018"
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+First presented at IASSIST 2017, Lawrence, Kansas
+updated for IASSIST 2018, Montréal, Québec
 
-First presented at IASSIST 2017
-
-May 23, 2017
-
-A work in progress!
+May 29, 2018
 
 Ryan Womack, Data Librarian
 
@@ -24,25 +22,43 @@ Rutgers University, rwomack@rutgers.edu
 
 ### Outline
 
+0. Setup
+
 1. What is data literacy?
 2. Packaging Data
 3. Packaging Functions
 4. Designing functions for data literacy and data exploration
-5. Interactivity - ggvis and googleVis
-6. Interactivity - shiny
-7. Interactivity - population pyramid
+5. Interactivity - ggvis and shiny
+6. Interactivity - population pyramid
+7. Building Instruction around Interactive Functions - the Rutgers Future Scholars
+8. Group Discussion
+
+### Setup
+
+This workshop uses a recent version of R (3.3 or later should be fine) and RStudio (1.1 or later).
+
+R is available at <https://r-project.org>
+
+RStudio is available at <https://rstudio.com>
+
 
 ### What is data literacy?
 
-Statistical literacy involves
+see associated slides, [Data_Literacy_for_All_Womack.pdf](https://github.com/ryandata/dataliteracyforall/blob/master/Data_Literacy_for_All_Womack.pdf)
+
+### Statistical Literacy
+
+**Statistical literacy** involves the following elements:
 - Literacy (reading, but also including handling graphs, charts, and
 tables, and other forms of textual evidence)
-- Statistical
-- Mathematical
+- Statistical knowledge
+- Mathematical knowledge
 - Context
 - Critical Skills
 
-Data literacy requires statistical literacy, but with more emphasis on data wrangling and data exploration.
+### Data Literacy
+
+**Data literacy** requires statistical literacy, but with more emphasis on data wrangling and data exploration.
 
 Prado and Manzi --> "access, interpret, critically assess, manage, handle and ethically use data”
 
@@ -50,7 +66,9 @@ That is a lot. For education, often we need to focus on the core of statistical 
 
 As data professionals, we can do some of the work for our audiences to mask the complexity of the tools and highlight the data itself.
 
-### Packaging Data
+### Packages
+
+Some guides:
 
 RStudio and RMarkdown <http://rmarkdown.rstudio.com/>
 
@@ -58,16 +76,17 @@ Build Project
 <https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects>
 and
 <https://support.rstudio.com/hc/en-us/articles/200486508-Building-Testing-and-Distributing-Packages>
+<https://bookdown.org/rdpeng/RProgDA/building-r-packages.html>
 
-Prepare and extract some data with WDI.R
+### Packages - what are they
 
-Structure of a package
+The structure of a package
 
-devtools
-use_data() command
+How RStudio helps the process
 
-
-Note the drat package (<https://journal.r-project.org/archive/2017/RJ-2017-026/index.html>) allows for access to larger datasets.  CRAN has a 5 MB limit.
+From the command line: use
+R CMD build packagename
+R CMD INSTALL packagename
 
 A simple way to get started:
 <https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/>
@@ -78,19 +97,38 @@ Hadley Wickham's R Packages (Recommended)
 Official CRAN documentation
 <https://cran.r-project.org/doc/manuals/R-exts.html>
 
+
+### Packaging Data 
+
+We will prepare and extract some data with WDI.R
+
+Any data can be stored as an R data file and bundled in a package.
+
+The "devtools" package has a useful 
+use_data() command.
+
+
+Note the drat package (<https://journal.r-project.org/archive/2017/RJ-2017-026/index.html>) allows for access to larger datasets.  CRAN has a 5 MB limit.
+
+
 ### Packaging Functions
 
-Writing a function
-Writing documentation
-Saving a function
-Checking and testing...
-Building and sharing a package
+We will walk through:
 
+* Writing a function
+* Writing documentation
+* Saving a function
+* Checking and testing...
+* Building and sharing a package
+
+### How to distribute your package
+
+We can distribute packages several ways
 
 Local, e.g.
  library(mypkg, lib.loc = "f:/R-packages")
 
-RForge
+RForge - like a Github for R
 
 Github
 quick guide <http://rogerdudler.github.io/git-guide/>
@@ -106,35 +144,54 @@ install_github("ryandata/test11111")
 
 We want to build functions that the end user can quickly apply to their own data exploration needs.
 
-One package designed for this is mosaic
-<https://journal.r-project.org/archive/2017/RJ-2017-024/index.html>
+One package designed for this is [mosaic](https://journal.r-project.org/archive/2017/RJ-2017-024/index.html)
 
-### Interactivity - ggvis and googleVis
+### Interactivity - ggvis and shiny
 
-ggvis <http://ggvis.rstudio.com> provides a lightweight way to introduce some dynamic, interactive elements to your plots
+[ggvis](http://ggvis.rstudio.com) provides a lightweight way to introduce some dynamic, interactive elements to your plots
 
-googleVis is a relatively self-contained set of tools for quickly generating web-accessible interactive plots.  One downside is that it lacks customizability.
-One demo of googleVis
-<https://ryanwomack.com/ICPSR2015/>
-
-### Interactivity - shiny
-
-shiny <http://shiny.rstudio.com> provides a suite of tools to design customized interactive web-accessible data sites, while retaining R for data analysis.
+[shiny](http://shiny.rstudio.com) provides a suite of tools to design customized interactive web-accessible data sites, while retaining R for data analysis.
 
 See the shinyapp.R file.
 
 ### Interactivity - population pyramid
 
-Our final example illustrates the use of interactivity to uncover population patterns.
+This example illustrates the use of interactivity to uncover population patterns.
 
 See 
 <http://www.arilamstein.com/blog/2016/06/06/idbr-access-us-census-bureau-international-data-base-r/>
 
 <https://walkerke.github.io/2014/06/rcharts-pyramids/>
 
+Some of my other R materials may be found at 
+<http://libguides.rutgers.edu/data_R>
+
+### Building Instruction around Interactive Functions - the Rutgers Future Scholars
+
+Materials for an introduction to data for [Rutgers Future Scholars](https://futurescholars.rutgers.edu) can be found at
+
+<http://libguides.rutgers.edu/rutgersfuturescholars>
+
+The pyramid.R file creates a set of functions using the Census International Data Base API.  These functions can be used to analyze population growth for any country and dates desired.
+
+Working with **real** and **live** data in a simple way motivates rapid growth in data literacy.
+
+We can build customized kits like this for many purposes, such as international data.
+The [ropensci](https://ropensci.org/) project is a leading example of the explosion of packages being created for open data and other innovative applications.  Data literacy should be a part of this trend.
 
 Some of my other R materials may be found at 
 <http://libguides.rutgers.edu/data_R>
+
+### Open Discussion
+
+* What do you see as areas that would benefit from this guided approach to data literacy?
+* Are there particular sources you would use?
+* Specific techniques you would focus use?
+* Which audiences would you design for?
+* What are the challenges you would face?
+* What is the role for data professionals?
+
+Live PollEverywhere at <https://pollev.com/ryanwomack427>
 
 ### Lagniappe - Distributing files via PirateBox
 
